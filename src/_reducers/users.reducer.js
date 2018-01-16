@@ -7,6 +7,7 @@ export function users(state = {}, action) {
         loading: true
       };
     case userConstants.GETALL_SUCCESS:
+    debugger
       return {
         items: action.users
       };

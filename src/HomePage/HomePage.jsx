@@ -12,8 +12,8 @@ class HomePage extends React.Component {
         this.props.dispatch(groupActions.getAll());
     }
 
-    handleDeleteUser(id) {
-        return (e) => this.props.dispatch(userActions.delete(id));
+    handleDeleteUser(username) {
+        return (e) => this.props.dispatch(userActions.delete(username));
     }
 
     handleAddGroup(){
@@ -31,6 +31,7 @@ class HomePage extends React.Component {
                 {users.loading && <em>Loading users...</em>}
                 {console.log('error:' + users.error)}
                 {users.error && <span className="text-danger">ERROR: {users.error.toString()}</span>}
+                {console.log(users)}
                 {users.items &&
                     <ul>
                         {users.items.map((user, index) =>
@@ -39,19 +40,15 @@ class HomePage extends React.Component {
                                 {
                                     user.deleting ? <em> - Deleting...</em>
                                     : user.deleteError ? <span className="text-danger"> - ERROR: {user.deleteError}</span>
-                                    : <span> - <a onClick={this.handleDeleteUser(user.id)}>Delete</a></span>
+                                    : <span> - <a onClick={this.handleDeleteUser(user.username)}>Delete</a></span>
                                 }
                             </li>
                         )}
                     </ul>
                 }
-                {console.log('1')}
                 <h3>All groups:</h3>
-                {console.log('2')}
                 {groups.loading && <em>Loading groups...</em>}
-                {console.log('3')}
-                {groups.error && <p className="text-danger">ERROR: {groups.error.toString()}</p>}
-                {console.log('4')}
+                {groups.error && <span className="text-danger">ERROR: {groups.error.toString()}</span>}
                 {groups.items &&
                     
                     <ul>
@@ -62,8 +59,8 @@ class HomePage extends React.Component {
                                 {group.name}
                                 {
                                     group.deleting ? <em> - Deleting...</em>
-                                    : group.deleteError ? <p className="text-danger"> - ERROR: {group.deleteError}</p>
-                                    : <p> - <a onClick={this.handleDeleteGroup(group.id)}>Delete</a></p>
+                                    : group.deleteError ? <span className="text-danger"> - ERROR: {group.deleteError}</span>
+                                    : <span> - <a onClick={this.handleDeleteGroup(group.id)}>Delete</a></span>
                                 }
                             </li>
                         )}

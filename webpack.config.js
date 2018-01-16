@@ -28,6 +28,13 @@ module.exports = {
         inject: 'body'
     })],
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
+        inline: true,
+        proxy: {
+          '*': {
+            target: 'http://localhost:4000/',
+            secure: false
+          }
+        }
     }
 }

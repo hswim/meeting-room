@@ -7,9 +7,13 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "dev-server":"node server/api/index.js"
   },
+  "proxy": "http://localhost:4000",
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "mongodb": "^3.0.1",
     "history": "^4.6.3",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
